@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Piece of Us | Thahani</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
+:root{--paper:#fffaf1;--cream:#f6eddf;--rose:#b8757d;--rose2:#e7c6c4;--sage:#9aa58b;--ink:#55463f;--muted:#8e7c70;--line:#e7d9c8}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+button{font:inherit}
+.cover{min-height:100svh;display:grid;place-items:center;padding:32px 20px;position:relative;overflow:hidden;background:radial-gradient(circle at 15% 20%,#f3e4df 0 2px,transparent 3px),radial-gradient(circle at 85% 75%,#e8e7d9 0 2px,transparent 3px),linear-gradient(145deg,#fffaf2,#f4e9dc)}
+.cover:before,.cover:after{content:"✿";position:absolute;color:#b7b99e;opacity:.45;font-size:110px;transform:rotate(-20deg)}
+.cover:before{top:6%;left:5%}.cover:after{right:4%;bottom:5%;font-size:145px;color:#c88c8d}
+.cover-inner{max-width:720px;width:100%;text-align:center;position:relative;z-index:1}
+.eyebrow{font:11px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:var(--rose)}
+.cover h1{font-size:clamp(48px,9vw,92px);font-weight:normal;line-height:.98;margin:24px 0 16px;color:#59463f}
+.cover h1 em{color:var(--rose);font-weight:normal}.birthday-title{font-family:var(--brush)!important;font-size:clamp(54px,12vw,104px)!important;line-height:1.05!important;transform:rotate(-3deg);margin:32px 0 24px!important}.birthday-title em{display:inline-block;margin-top:8px}.cover-note{font-family:"Brush Script MT","Segoe Script",cursive;font-size:clamp(23px,5vw,34px)!important;letter-spacing:0!important;text-transform:none!important;color:#65534c!important}
+.cover p{font-size:17px;line-height:1.8;color:var(--muted);max-width:490px;margin:0 auto 32px}
+.envelope-wrap{margin:0 auto 26px;width:190px;height:132px;position:relative;cursor:pointer;filter:drop-shadow(0 12px 16px #80675b22)}
+.envelope{position:absolute;inset:0;background:#d9aeb0;border-radius:5px;overflow:hidden}
+.envelope:before{content:"";position:absolute;inset:0;background:#e7c5c1;clip-path:polygon(0 0,50% 58%,100% 0)}
+.envelope:after{content:"";position:absolute;inset:0;background:#c98e93;clip-path:polygon(0 100%,50% 48%,100% 100%)}
+.seal{position:absolute;z-index:2;left:50%;top:52%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#a75f68;color:#fff4e9;display:grid;place-items:center;font-size:16px}
+.open-btn,.nav-btn{border:1px solid var(--rose);background:var(--rose);color:white;padding:13px 25px;border-radius:999px;letter-spacing:.5px;cursor:pointer;transition:.2s}
+.open-btn:hover,.nav-btn:hover{background:#9f626b;transform:translateY(-2px)}
+.hint{font:11px Arial,sans-serif;color:#a08d80;letter-spacing:1.5px;text-transform:uppercase}
+nav{position:sticky;top:0;z-index:5;background:#fffaf1eF;backdrop-filter:blur(12px);border-bottom:1px solid var(--line);display:flex;justify-content:center;gap:8px;padding:12px;flex-wrap:wrap}
+nav a{font:11px Arial,sans-serif;letter-spacing:1.3px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:9px 12px;border-radius:30px}
+nav a:hover{background:var(--cream);color:var(--rose)}
+main{display:none}
+main.visible{display:block}
+section{max-width:940px;margin:auto;padding:90px 24px}
+.section-kicker{text-align:center;font:10px Arial,sans-serif;letter-spacing:3px;text-transform:uppercase;color:var(--rose)}
+h2{text-align:center;font-size:clamp(34px,5vw,52px);font-weight:normal;margin:13px 0 14px}
+.intro{text-align:center;max-width:580px;margin:0 auto 42px;color:var(--muted);line-height:1.8;font-size:16px}
+.memory-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.photo-card{background:#fff;padding:12px 12px 22px;box-shadow:0 8px 25px #78665b12;transform:rotate(var(--tilt));}
+.photo-placeholder{aspect-ratio:4/5;background:linear-gradient(145deg,#eee5d8,#e7d4d0);display:grid;place-items:center;color:#9a8478;font-size:34px;position:relative;overflow:hidden}
+.photo-placeholder:after{content:"";position:absolute;width:150%;height:1px;background:#ffffff77;transform:rotate(-35deg)}
+.photo-card p{text-align:center;margin:14px 0 0;font-style:italic;color:#806d62;font-size:14px}
+.note-strip{margin:44px auto 0;max-width:690px;background:#f4eee3;padding:25px 30px;text-align:center;line-height:1.8;color:#76675d;border-left:3px solid var(--sage)}
+.little-things{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:760px;margin:auto}
+.thing{background:#fffdf8;border:1px solid var(--line);padding:23px;border-radius:3px;min-height:130px}
+.thing .symbol{font-size:22px;color:var(--rose)}
+.thing h3{font-size:20px;font-weight:normal;margin:10px 0 7px}
+.thing p{font-size:14px;line-height:1.65;color:var(--muted);margin:0}
+.letter-section{background:#f4ede2;max-width:none;padding:90px 20px}
+.letter-wrap{max-width:740px;margin:auto;background:#fffdf8;padding:clamp(28px,6vw,65px);box-shadow:0 15px 45px #68584a13;border:1px solid #eee2d3;position:relative}
+.letter-wrap:before{content:"";position:absolute;inset:10px;border:1px solid #eee4d8;pointer-events:none}
+.letter-top{text-align:center;color:var(--rose);font-size:24px;margin-bottom:20px}
+.letter-wrap h2{font-size:36px;margin-bottom:28px}
+.letter-body{white-space:normal;font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.85;color:#66564c;position:relative;text-align:left;overflow-wrap:break-word}
+.letter-body p{font-family:Georgia,'Times New Roman',serif;font-size:16px;line-height:1.85;margin:0 0 20px;padding:0}
+.final-card{max-width:650px;margin:auto;text-align:center;padding:50px 28px;background:#f2e9df;border:1px solid var(--line)}
+.final-card .flower{font-size:32px;color:var(--rose)}
+.final-card p{font-size:18px;line-height:1.9;color:#79685d}
+footer{text-align:center;padding:35px 20px;color:#a08d80;font:10px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase}
+@media(max-width:650px){.memory-grid{grid-template-columns:1fr 1fr}.memory-grid .photo-card:last-child{display:none}.little-things{grid-template-columns:1fr}.cover p{font-size:15px}section{padding:68px 20px}.letter-body{font-size:15px}}
+
+
+/* Readable typography everywhere; only the main birthday greeting is handwritten. */
+html,body,button,nav a,.eyebrow,.hint,.cover p,.section-kicker,
+h2,h3,p,.photo-card p,.note-strip,.thing,.letter-body,.letter-wrap,
+.final-card,footer,.open-btn,.nav-btn,.cover-note{
+  font-family:Georgia,'Times New Roman',serif!important;
+}
+.cover h1.birthday-title{
+  font-family:'Caveat','Segoe Script','Brush Script MT',cursive!important;
+  font-size:clamp(64px,13vw,112px)!important;
+  line-height:1.05!important;
+}
+.cover h1.birthday-title em{font-family:inherit!important}
+.cover p{font-size:17px;line-height:1.8}
+.open-btn{font-size:17px;letter-spacing:.5px}
+.cover-note{font-size:17px!important;letter-spacing:0!important;text-transform:none!important}
+h2{font-size:clamp(34px,5vw,52px)}
+.letter-wrap h2{font-size:clamp(34px,5vw,42px)!important;font-weight:normal;line-height:1.2}
+.letter-body{font-size:16px!important;line-height:1.95!important;text-align:left;color:#66564c}
+.letter-body p{font-size:16px!important;line-height:1.95!important;margin:0 0 18px}
+.final-card p{font-size:18px;line-height:1.9}
+</style>
+</head>
+<body>
+<header class="cover" id="cover">
+  <div class="cover-inner">
+    <h1 class="birthday-title">Happy Birthday<br><em>Thahani!</em></h1>
+<div class="envelope-wrap" role="img" aria-label="A sealed pink envelope">
+      <div class="envelope"></div><div class="seal">T</div>
+    </div>
+    <button class="open-btn" onclick="openKeepsake()">Open your little gift</button>
+    <div class="hint cover-note" style="margin-top:22px">Hope you like it (you should) ♡</div>
+  </div>
+</header>
+<main id="gift">
+<section class="letter-section" id="letter">
+<div class="letter-wrap">
+    <div class="letter-top">♡</div>
+    <h2>Happy birthday, Thahani.</h2>
+    <div class="letter-body">
+<p>Happy birthday, Thahani. 🤍</p>
+<p>
+Well, congratulations on surviving another year of being you. Honestly, I don't know how you do it, but here we are. 😭 I hope this year brings you everything you've been wishing for, more reasons to laugh, fewer reasons to stress, and absolutely no unnecessary drama (although knowing us, I can't promise the last one). I hope you achieve everything you set your mind to, eat all the good food, make the most beautiful memories, and have a year that treats you as kindly as you deserve. And please, for once, make some sensible decisions. I'm not asking for a miracle, just a little progress. 😭</p>
+<p>But jokes aside, there's something I've been thinking about lately...</p>
+<p>Lately, I've found myself thinking about how quickly this phase of our lives is passing. We're at an age where so much is changing, yet somehow, in the middle of all that uncertainty, we have these friendships that make ordinary days feel a little more meaningful. We don't always realise it while we're living through it, but these classes, conversations, silly arguments, shared laughter and little everyday routines are slowly becoming memories we'll one day wish we could revisit. And I think that's what makes this friendship so precious to me.</p>
+<p>Think about it. We go to class, complain about how exhausting everything is, count the minutes until we can go home, rush around during those ten or fifteen minutes of break trying to buy food, find time to pray, and somehow squeeze in a hundred conversations in between. We complain about exams, stress about how much we haven't studied, and occasionally discover that one of us didn't even know there was an exam in the first place. 😭 And then there are all the silly jokes, random conversations, and the countless times I've come to you to yap about my love life, complain about him, overthink something, or tell you the latest episode of whatever is happening in my head. You have listened to so much of it, and honestly, thank you for putting up with me.</p>
+<p>But what makes me a little emotional is knowing that we won't have this forever. In a few months, we'll sit for our final examinations, say our goodbyes, and slowly find ourselves walking into completely different chapters of life. We might end up in different universities, different workplaces, different cities, or even different countries. We might still be friends, of course, but we won't always have these little everyday moments. Someday, our conversations might be about careers, responsibilities, bills, families, and everything else adulthood decides to throw at us. We'll grow older, and even if we remain together, we'll never be these exact versions of ourselves again.</p>
+<p>And that's why I want to treasure this time. I don't want to spend the present missing the past, only to look back one day and realise that I was too busy missing yesterday to appreciate what I had today.</p>
+<p>And Thahani, when I think about the friendships I want to carry with me beyond this chapter, yours is one I genuinely hope to keep.</p>
+<p>We've had our fair share of fights, misunderstandings, and moments when neither of us wanted to talk to the other. There have been silences, anger, hurt, guilt, regret, and probably moments when we both wondered how things would turn out. But somehow, we always found our way back to each other. We talked things through, sorted things out, and chose to stay.</p>
+<p>And I think that's something quite rare nowadays. So many bonds break because walking away becomes easier than having an uncomfortable conversation. People leave, misunderstandings remain unresolved, and friendships that once meant everything become memories. But with us, somehow, all that hurt, guilt, regret, and even the hatred we might have felt during those moments seems to disappear the moment we hug. It's almost as though none of it matters more than the friendship we have. And I don't think you realise how much I treasure that.</p>
+<p>Thank you for being there for me. Thank you for listening to my endless complaints, my random thoughts, my relationship dramas, my exam panics, and everything in between. Thank you for being someone I can laugh with, complain to, disagree with, get angry at, make up with, and still come back to. Thank you for not letting every disagreement become an ending.</p>
+<p>I don't know exactly where life will take us after these next few months. I don't know how often we'll meet, how frequently we'll talk, or what our lives will look like a few years from now. But I really hope that, somewhere between all the growing up and figuring life out, we never lose the ability to find our way back to each other.</p>
+<p>I hope years from now we get to sit together and laugh about how we used to complain about classes, how little we studied before exams, how we spent our breaks, and how we thought those ordinary days were nothing special.</p>
+<p>Because they were special. We just didn't know it yet.</p>
+<p>Happy birthday once again, Thahani. I hope life is gentle with you, that you achieve everything your heart quietly wishes for, and that you never lose the little things that make you who you are.</p>
+<p>And most importantly, I hope this isn't just a friendship belonging to this chapter of our lives. I hope we get to be part of each other's stories in all the chapters that follow.</p>
+<p>Love you. Always grateful that, out of all the people I could have met along the way, I got to meet you. 🤍</p>
+    </div>
+  </div>
+</section>
+<section id="next-chapters">
+<div class="final-card">
+    <div class="flower">❀</div>
+    <h2>To the journey ahead,</h2>
+    <p>I hope we keep finding our way back to each other. Here's to the memories we've made, the ones we're making now, and all the stories we haven't lived yet.</p>
+    <p style="font-size:24px;color:var(--rose)">Happy birthday, Thahani. 🤍</p>
+    <div style="font-size:12px;letter-spacing:2px;color:#a08d80;margin-top:25px">WITH LOVE, ALWAYS</div>
+  </div>
+</section>
+</main>
+<script>
+function openKeepsake(){
+  document.getElementById('cover').style.display='none';
+  const gift=document.getElementById('gift');
+  gift.classList.add('visible');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
